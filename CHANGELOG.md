@@ -1,9 +1,5 @@
-cat > CHANGELOG.md << 'EOF'
-# Changelog
-
-## [1.0.0] - 2025-01-01
+## [2.0.0] - 2026-04-27
 ### Added
-- Configuración inicial del repositorio
-- Archivos base: README.md, .gitignore, CHANGELOG.md
 - Código Terraform: VPC, Subnet, Security Group, EC2
-EOF
+- Workflow GitHub Actions: TFLint, Checkov, Terraform Validate
+- Políticas OPA: deny_public_ssh y only_t2micro
