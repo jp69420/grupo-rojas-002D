@@ -1,5 +1,5 @@
-cat > main.tf << 'EOF'
 terraform {
+  required_version = ">= 1.0.0"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -26,7 +26,7 @@ resource "aws_subnet" "AUY1105-rojas-subnet" {
 
 resource "aws_security_group" "AUY1105-rojas-sg" {
   name        = "AUY1105-rojas-sg"
-  description = "Security group que permite solo SSH entrante"
+  description = "Security group permite solo SSH entrante"
   vpc_id      = aws_vpc.AUY1105-rojas-vpc.id
 
   ingress {
@@ -54,4 +54,3 @@ resource "aws_instance" "AUY1105-rojas-ec2" {
   vpc_security_group_ids = [aws_security_group.AUY1105-rojas-sg.id]
   tags = { Name = "AUY1105-rojas-ec2" }
 }
-EOF
