@@ -1,5 +1,4 @@
-ls .github/workflows/
- de Calidad y Seguridad IaC
+name: Analisis de Calidad y Seguridad IaC
 
 on:
   pull_request:
@@ -8,10 +7,10 @@ on:
 
 jobs:
   analisis-estatico:
-    name: "1. Análisis Estático - TFLint"
+    name: "1. Analisis Estatico - TFLint"
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout código
+      - name: Checkout codigo
         uses: actions/checkout@v4
 
       - name: Instalar TFLint
@@ -24,11 +23,11 @@ jobs:
         run: tflint --format compact
 
   analisis-seguridad:
-    name: "2. Análisis de Seguridad - Checkov"
+    name: "2. Analisis de Seguridad - Checkov"
     runs-on: ubuntu-latest
     needs: analisis-estatico
     steps:
-      - name: Checkout código
+      - name: Checkout codigo
         uses: actions/checkout@v4
 
       - name: Ejecutar Checkov
@@ -39,11 +38,11 @@ jobs:
           soft_fail: true
 
   validacion-terraform:
-    name: "3. Validación Terraform"
+    name: "3. Validacion Terraform"
     runs-on: ubuntu-latest
     needs: analisis-seguridad
     steps:
-      - name: Checkout código
+      - name: Checkout codigo
         uses: actions/checkout@v4
 
       - name: Instalar Terraform
@@ -54,4 +53,3 @@ jobs:
 
       - name: Terraform Validate
         run: terraform validate
-EOF
